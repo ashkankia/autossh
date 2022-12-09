@@ -45,7 +45,6 @@ let "DEFAULT_PORT += 32768"
 echo "[INFO ] Using $(autossh -V)"
 echo "[INFO ] Tunneling ${SSH_BIND_IP:=127.0.0.1}:${SSH_TUNNEL_PORT:=${DEFAULT_PORT}}" \
      " on ${SSH_REMOTE_USER:=root}@${SSH_REMOTE_HOST:=localhost}:${SSH_REMOTE_PORT}" \
-     " to ${SSH_TARGET_HOST=localhost}:${SSH_TARGET_PORT:=22}"
 
 COMMAND="autossh "\
 "-M 0 "\
@@ -56,7 +55,7 @@ COMMAND="autossh "\
 "-o ExitOnForwardFailure=yes "\
 "${SSH_OPTIONS} "\
 "-t -t "\
-"${SSH_MODE:=-R} ${SSH_BIND_IP}:${SSH_TUNNEL_PORT}:${SSH_TARGET_HOST}:${SSH_TARGET_PORT} "\
+"${SSH_MODE:=-R} ${SSH_BIND_IP}:${SSH_TUNNEL_PORT} "\
 "-p ${SSH_REMOTE_PORT:=22} "\
 "${SSH_REMOTE_USER}@${SSH_REMOTE_HOST}"
 
